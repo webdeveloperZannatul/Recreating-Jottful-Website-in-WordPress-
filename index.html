@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whole Body Wellness & Northern NM Healthcare</title>
+    <meta name="description" content="Holistic healthcare and wellness services in Northern New Mexico. Chiropractic care, functional medicine, and whole body wellness.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C7A7B', // Teal based on wellness vibe
+                        secondary: '#2D3748', // Dark Slate
+                        accent: '#E6FFFA', // Light Teal
+                        cream: '#F7FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C7A7B;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #235c5d;
+        }
+
+        /* Hero Parallax Effect */
+        .hero-section {
+            background-image: linear-gradient(rgba(44, 122, 123, 0.8), rgba(45, 55, 72, 0.7)), url('https://i.postimg.cc/vBCKW36d/acupuncture-DNA36IMf.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .cta-gradient {
+            background: linear-gradient(135deg, #2C7A7B 0%, #319795 100%);
+        }
+
+        /* Smooth Anchor Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #2C7A7B;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-white antialiased flex flex-col min-h-screen">
+
+    <!-- Top Bar: Contact Info -->
+    <div class="bg-secondary text-white py-2 text-sm hidden md:block">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex space-x-6">
+                <span><i class="fas fa-phone-alt mr-2 text-primary"></i> (505) 555-0123</span>
+                <span><i class="fas fa-envelope mr-2 text-primary"></i> info@wholebodywellnessnm.com</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="flex items-center">
+                    <img src="https://i.postimg.cc/BQhdNbgL/logo-removebg-preview.png" alt="Whole Body Wellness Logo" class="h-16 md:h-20 w-auto object-contain">
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link text-gray-800 font-medium hover:text-primary transition">Home</a>
+                    <a href="#about" class="nav-link text-gray-800 font-medium hover:text-primary transition">About Us</a>
+                    <a href="#services" class="nav-link text-gray-800 font-medium hover:text-primary transition">Services</a>
+                    <a href="#blog" class="nav-link text-gray-800 font-medium hover:text-primary transition">Wellness Blog</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-primary text-white font-bold hover:bg-teal-800 transition shadow-lg transform hover:-translate-y-0.5" style="background-color:#575791;">Book Appointment</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 pb-4">
+            <a href="#home" class="block px-6 py-3 text-gray-800 hover:bg-gray-50">Home</a>
+            <a href="#about" class="block px-6 py-3 text-gray-800 hover:bg-gray-50">About Us</a>
+            <a href="#services" class="block px-6 py-3 text-gray-800 hover:bg-gray-50">Services</a>
+            <a href="#blog" class="block px-6 py-3 text-gray-800 hover:bg-gray-50">Blog</a>
+            <a href="#contact" class="block px-6 py-3 text-primary font-bold">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section h-[80vh] flex items-center relative">
+        <div class="container mx-auto px-6 text-center text-white relative z-10" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4 leading-tight">
+                Northern New Mexico <br>Healthcare & Wellness
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 font-light max-w-2xl mx-auto">
+                Restoring balance through integrative medicine and compassionate care. Your journey to whole body wellness starts here.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4" >
+                <a href="#services" class="px-8 py-3 bg-white text-primary font-bold rounded-lg hover:bg-gray-100 transition shadow-lg">Our Services</a>
+                <a href="#contact" class="px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-primary transition">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro / About Section -->
+    <section id="about" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://i.postimg.cc/kgZWMzrn/blog-notes-D1k-L-d-O.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Wellness Consultation" class="rounded-xl shadow-2xl">
+                </div>
+                <div data-aos="fade-left">
+                    <h4 class="text-primary font-bold uppercase tracking-widest text-sm mb-2">Welcome to Whole Body Wellness</h4>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-6">Patient-Centered Care for a Healthier You</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        We believe that true health is more than just the absence of disease. It is a state of complete physical, mental, and social well-being. At Northern New Mexico Healthcare, we combine modern medical practices with holistic approaches to treat the whole person, not just the symptoms.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Our team of dedicated professionals is here to guide you through personalized treatment plans designed to restore your vitality and improve your quality of life.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-primary mr-3"></i> Comprehensive Diagnostics</li>
+                        <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-primary mr-3"></i> Personalized Nutrition Plans</li>
+                        <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-primary mr-3"></i> Chronic Pain Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-20 bg-white" style="background-color: #e7f1f9;">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800">Our Services</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 group-hover:bg-primary transition duration-300">
+                        <i class="fas fa-spine text-2xl text-primary group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Chiropractic Care</h3>
+                    <p class="text-gray-600 mb-4">Non-invasive treatments for disorders of the musculoskeletal system, focusing on manual adjustment and spinal manipulation.</p>
+                    <a href="#" class="text-primary font-bold hover:underline">Learn More &rarr;</a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 group-hover:bg-primary transition duration-300">
+                        <i class="fas fa-user-md text-2xl text-primary group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Functional Medicine</h3>
+                    <p class="text-gray-600 mb-4">Addressing the underlying causes of disease using a systems-oriented approach and engaging both patient and practitioner.</p>
+                    <a href="#" class="text-primary font-bold hover:underline">Learn More &rarr;</a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 group-hover:bg-primary transition duration-300">
+                        <i class="fas fa-seedling text-2xl text-primary group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Nutritional Counseling</h3>
+                    <p class="text-gray-600 mb-4">Personalized dietary plans to support healing, boost immunity, and maintain long-term health and vitality.</p>
+                    <a href="#" class="text-primary font-bold hover:underline">Learn More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WordPress Blog Section Simulation -->
+    <section id="blog" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div data-aos="fade-right">
+                    <h4 class="text-primary font-bold uppercase tracking-widest text-sm mb-2">Latest News</h4>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800">From The Blog</h2>
+                </div>
+                <a href="#" class="hidden md:inline-block text-primary font-bold border-b-2 border-primary pb-1 hover:text-teal-800 transition">View All Posts</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary bg-accent px-2 py-1 rounded mb-3 inline-block">Nutrition</span>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 hover:text-primary transition cursor-pointer">5 Anti-Inflammatory Foods to Add to Your Diet</h3>
+                        <p class="text-gray-600 text-sm mb-4">Inflammation is at the root of many chronic diseases. Discover simple dietary changes...</p>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span><i class="far fa-calendar-alt mr-1"></i> Oct 12, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>By Dr. Smith</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary bg-accent px-2 py-1 rounded mb-3 inline-block">Fitness</span>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 hover:text-primary transition cursor-pointer">Benefits of Low-Impact Exercise</h3>
+                        <p class="text-gray-600 text-sm mb-4">You don't need to run a marathon to be healthy. Learn how swimming and yoga can help...</p>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span><i class="far fa-calendar-alt mr-1"></i> Sep 28, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>By Staff</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary bg-accent px-2 py-1 rounded mb-3 inline-block">Mental Health</span>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 hover:text-primary transition cursor-pointer">Stress Management Techniques</h3>
+                        <p class="text-gray-600 text-sm mb-4">Chronic stress affects the whole body. Here are three breathing exercises to reset your system...</p>
+                        <div class="flex items-center text-xs text-gray-500">
+                            <span><i class="far fa-calendar-alt mr-1"></i> Sep 15, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>By Dr. Doe</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                <a href="#" class="text-primary font-bold border-b-2 border-primary pb-1">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative bg-secondary">
+        <!-- Background decorative overlay -->
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/medical-icons.png')]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                
+                <!-- Contact Info -->
+                <div class="md:w-5/12 bg-primary p-10 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold mb-6">Get In Touch</h3>
+                        <p class="mb-8 opacity-90">Have questions about our services or insurance acceptance? Fill out the form or give us a call.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4 text-accent text-lg"></i>
+                                <div>
+                                    <h5 class="font-bold">Location</h5>
+                                    <p class="text-sm opacity-90">123 Wellness Way, Suite 100<br>Santa Fe, NM 87505</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone mt-1 mr-4 text-accent text-lg"></i>
+                                <div>
+                                    <h5 class="font-bold">Phone</h5>
+                                    <p class="text-sm opacity-90">(505) 555-0123</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-4 text-accent text-lg"></i>
+                                <div>
+                                    <h5 class="font-bold">Email</h5>
+                                    <p class="text-sm opacity-90">info@wholebodywellnessnm.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <p class="font-bold mb-4">Follow Us</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form (Simulating WPForms/Gravity Forms) -->
+                <div class="md:w-7/12 p-10">
+                    <h3 class="text-2xl font-serif font-bold text-gray-800 mb-6">Send a Message</h3>
+                    <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent successfully. We will contact you shortly.');" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">First Name *</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Last Name *</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Email Address *</label>
+                            <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">How can we help? *</label>
+                            <textarea rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full md:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-teal-800 transition shadow-md transform hover:-translate-y-0.5">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <img src="https://i.postimg.cc/BQhdNbgL/logo-removebg-preview.png" alt="Logo" class="h-14 bg-white rounded p-1 mb-4">
+                    <p class="text-sm leading-relaxed mb-4">Dedicated to providing high-quality, holistic healthcare to the Northern New Mexico community.</p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-primary transition">About Us</a></li>
+                        <li><a href="#services" class="hover:text-primary transition">Services</a></li>
+                        <li><a href="#blog" class="hover:text-primary transition">Blog</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">Chiropractic</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Functional Medicine</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Massage Therapy</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Acupuncture</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-4">Office Hours</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between"><span>Mon - Thu:</span> <span>9:00 AM - 5:00 PM</span></li>
+                        <li class="flex justify-between"><span>Friday:</span> <span>9:00 AM - 1:00 PM</span></li>
+                        <li class="flex justify-between"><span>Sat - Sun:</span> <span>Closed</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2026 Whole Body Wellness & Northern New Mexico Healthcare. All Rights Reserved Designed By ZAnnatul.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS Animation
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
